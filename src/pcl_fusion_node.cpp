@@ -270,9 +270,8 @@ int main(int argc, char **argv) {
         ROS_ERROR("Parameters failed to load");
     }
 
-    // cam_file = "/home/btearle/v4rl_ws/src/pcl_fusion/ncamera.yaml";
-
-    camera = aslam::NCamera::loadFromYaml(cam_file);
+    camera = std::make_shared<aslam::NCamera>();
+    camera->deserializeFromFile(cam_file);
     T_S_C = (camera->get_T_C_B(0).getTransformationMatrix()).inverse();
 
     // Subscribers
