@@ -1,5 +1,6 @@
 #include "fused_pointcloud.hpp"
 #include "pcl_fusion_node.hpp"
+
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 #include <Eigen/Dense>
