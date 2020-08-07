@@ -1,8 +1,11 @@
 <launch>
   <arg name="agent_id" default = "0" />
-  <node name="pcl_fusion_$(arg agent_id)" pkg="pcl_fusion" type="pcl_fusion_node" output="screen">
+  <arg name="scale"    default="0.5" />
+  <arg name="process_every_nth_frame" default="3" />
   
-    <param name="cam_config" type="string" value="/home/btearle/v4rl_ws/src/pcl_fusion/conf/ncamera.yaml"/>
+  <!-- PCL Fusion Node -->
+  <node name="pcl_fusion_$(arg agent_id)" pkg="pcl_fusion" type="pcl_fusion_node" output="screen">
+    <param name="cam_config" type="string" value="$(find pcl_fusion)/conf/ncamera.yaml"/>
     <param name="kf_per_cloud" value="8"/>
     <param name="voxel_filter_size" value="0.07"/>
     <param name="agent_id" value="$(arg agent_id)"/>
@@ -10,17 +13,10 @@
 
     <remap from="/pointcloud" to="/dense_stereo/pointcloud" />
     <remap from="/vins_keyframe" to="/pose_graph_$(arg agent_id)/vins_keyframe" /> 
-
   </node>
 
-<arg name="first_camera_name" default="cam0" />
-<arg name="second_camera_name" default="cam1" />
-<!-- <arg name="mav_name" default="euroc_agent" /> -->
-<!-- <arg name="namespace" default="$(arg mav_name)" /> -->
-<arg name="scale" default="0.5" />
-<arg name="process_every_nth_frame" default="3" />
-
-<node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node">
+  <!-- Dense stereo Node -->
+  <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node">
     <param name="input_camera_info_from_ros_params" value = "true"/>
     <param name="first_camera_namespace" value="cam0"/>
     <param name="second_camera_namespace" value="cam1"/>
@@ -31,13 +27,12 @@
     <param name="depth/do_median_blur" value="false"/>
     <param name="depth/use_mode_HH" value="true"/>
     <param name="process_every_nth_frame" value="$(arg process_every_nth_frame)"/>
-
-    <rosparam file="$(find voxblox_ros)/cfg/calibrations/euroc_camchain.yaml"/>
+    <rosparam file="$(find pcl_fusion)/conf/euroc_camchain.yaml"/>
 
     <remap from="raw/first/image" to="cam0_$(arg agent_id)/image_raw"/>
     <remap from="raw/second/image" to="cam1_$(arg agent_id)/image_raw"/>
     <remap from="raw/first/camera_info" to="cam0/camera_info"/>
     <remap from="raw/second/camera_info" to="cam1/camera_info"/>
-</node>
-
+  </node>
+ 
 </launch>

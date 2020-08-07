@@ -1,24 +1,18 @@
 <launch>
   <arg name="agent_id" default = "0" />
+  <arg name="scale"    default="0.5" />
+  <arg name="process_every_nth_frame" default="5" />
   <arg name="mav_name" default="pegasus"/>
-  <!-- <arg name="namespace" default="$(arg mav_name)" /> -->
 
   <node name="pcl_fusion_$(arg agent_id)" pkg="pcl_fusion" type="pcl_fusion_node" output="screen"> <!--launch-prefix="xterm -fs 60 -e gdb args"-->
-  
-    <!-- <param name="cam_config" type="string" value="$(find v4rl_mav_launch)/parameters/common/ncamera_23026_new.yaml"/> -->
     <param name="cam_config" type="string" value="$(find pcl_fusion)/conf/ncamera_v4rl0.yaml"/>
     <param name="kf_per_cloud" value="5"/>
     <param name="voxel_filter_size" value="0.5"/>
 
     <remap from="/pointcloud" to="/dense_stereo/pointcloud" />
     <remap from="/vins_keyframe" to="/pose_graph_$(arg agent_id)/vins_keyframe" /> 
-
   </node>
 
-  <arg name="first_camera_name" default="cam0" />
-  <arg name="second_camera_name" default="cam1" />
-  <arg name="scale" default="0.5" />
-  <arg name="process_every_nth_frame" default="5" />
 
 
   <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node">
@@ -28,12 +22,7 @@
       <param name="first_output_frame" value="cam0_rect"/>
       <param name="second_output_frame" value="cam1_rect"/>
       <param name="scale" value="$(arg scale)"/>
-      <!-- <param name="depth/use_sgbm" value="true"/>
-      <param name="depth/do_median_blur" value="false"/>
-      <param name="depth/use_mode_HH" value="true"/> -->
       <param name="process_every_nth_frame" value="$(arg process_every_nth_frame)"/>
-
-      <!-- <rosparam file="$(find v4rl_mav_launch)/parameters/common/visensor_23026_stereo.yaml"/> -->
       <rosparam file="$(find pcl_fusion)/conf/visensor_v4rl_stereo.yaml"/>
 
       <remap from="raw/first/image" to="$(arg mav_name)/cam0/image_raw"/>
