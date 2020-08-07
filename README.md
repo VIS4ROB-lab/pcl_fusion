@@ -5,7 +5,12 @@ This is a software package developed as part of a larger collaborative SLAM fram
 The package receives raw pointclouds (e.g. from [image_undistort's dense_stereo node](https://github.com/ethz-asl/image_undistort)) along with keyframe messages from a [client-server adaptation of VINS-Mono](https://github.com/VIS4ROB-lab/vins_client_server/tree/feature/multi_agent). It fuses the pointclouds together to create a larger pointcloud with rigid body transformations obtained from the keyframe messages, and then downsamples it using a voxel filter. These are then sent to a backend server for further pose-graph optimization.
 
 ## Installation  
-In order to install this package, follow these steps (tested under Ubuntu 18.04 LTS, ROS Melodic). First, create a catkin workspace:
+In order to install this package, follow these steps (tested under Ubuntu 18.04 LTS, ROS Melodic). First, install these dependencies:
+```
+$ sudo apt-get install ros-melodic-pcl-ros ros-melodic-pcl-conversions libnlopt-dev
+```  
+
+Then, create a catkin workspace:
 ```
 $ mkdir -p catkin_ws/src
 $ cd catkin_ws

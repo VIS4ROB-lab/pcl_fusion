@@ -8,5 +8,6 @@
 - git: {local-name: doxygen_catkin, uri: 'git@github.com:ethz-asl/doxygen_catkin.git'}
 - git: {local-name: aslam_cv2, uri: 'git@github.com:ethz-asl/aslam_cv2.git'}
 - git: {local-name: gflags_catkin, uri: 'git@github.com:ethz-asl/gflags_catkin.git'}
+- git: {local-name: image_undistort, uri: 'git@github.com:ethz-asl/image_undistort.git'}
 - git: {local-name: minkindr, uri: 'git@github.com:ethz-asl/minkindr.git'}
 - git: {local-name: comm_msgs, uri: 'git@github.com:VIS4ROB-lab/comm_msgs.git'}
