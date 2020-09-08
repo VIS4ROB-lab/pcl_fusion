@@ -1,8 +1,19 @@
 # PCL Fusion
 
-This is a software package developed as part of a larger collaborative SLAM framework, available [here](https://github.com/VIS4ROB-lab/multi_robot_coordination).  
+This is a software package developed as part of a larger collaborative SLAM and planning framework, available [here](https://github.com/VIS4ROB-lab/multi_robot_coordination).  
 
-The package receives raw pointclouds (e.g. from [image_undistort's dense_stereo node](https://github.com/ethz-asl/image_undistort)) along with keyframe messages from a [client-server adaptation of VINS-Mono](https://github.com/VIS4ROB-lab/vins_client_server/tree/feature/multi_agent). It fuses the pointclouds together to create a larger pointcloud with rigid body transformations obtained from the keyframe messages, and then downsamples it using a voxel filter. These are then sent to a backend server for further pose-graph optimization.
+The package receives raw pointclouds (e.g. from [image_undistort's dense_stereo node](https://github.com/ethz-asl/image_undistort)) along with keyframe messages from a [client-server adaptation of VINS-Mono](https://github.com/VIS4ROB-lab/vins_client_server/tree/feature/multi_agent). It fuses the pointclouds together to create a larger pointcloud with rigid body transformations obtained from the keyframe messages, and then downsamples it using a voxel filter. These are then sent to a backend server for further pose-graph optimization.  
+
+If you use this code in your academic work, please cite:
+
+    @inproceedings{bartolomei2020multi,
+      title={Multi-robot Coordination with Agent-Server Architecture for Autonomous Navigation in Partially Unknown Environments},
+      author={Bartolomei, Luca and Karrer, Marco and Chli, Margarita},
+      booktitle={2020 {IEEE/RSJ} International Conference on Intelligent Robots and Systems ({IROS})},
+      year={2020}
+    }
+
+This project is released under a GPLv3 license.
 
 ## Installation  
 In order to install this package, follow these steps (tested under Ubuntu 18.04 LTS, ROS Melodic). First, install these dependencies:

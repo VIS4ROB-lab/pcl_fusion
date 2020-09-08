@@ -16,7 +16,7 @@
   </node>
 
   <!-- Dense stereo Node -->
-  <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node">
+  <node name="dense_stereo" pkg="image_undistort" type="dense_stereo_node" output="log">
     <param name="input_camera_info_from_ros_params" value="true"/>
     <param name="first_camera_namespace"            value="cam0"/>
     <param name="second_camera_namespace"           value="cam1"/>
