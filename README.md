@@ -4,7 +4,7 @@ This is a software package developed as part of a larger collaborative SLAM and 
 
 The package receives raw pointclouds (e.g. from [image_undistort's dense_stereo node](https://github.com/ethz-asl/image_undistort)) along with keyframe messages from a [client-server adaptation of VINS-Mono](https://github.com/VIS4ROB-lab/vins_client_server/tree/feature/multi_agent). It fuses the pointclouds together to create a larger pointcloud with rigid body transformations obtained from the keyframe messages, and then downsamples it using a voxel filter. These are then sent to a backend server for further pose-graph optimization.  
 
-If you use this code in your academic work, please cite:
+If you use this code in your academic work, please cite ([PDF](https://www.research-collection.ethz.ch/handle/20.500.11850/441280)):
 
     @inproceedings{bartolomei2020multi,
       title={Multi-robot Coordination with Agent-Server Architecture for Autonomous Navigation in Partially Unknown Environments},
